@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+# fail fast
+set -e
+
+# debug
+# set -x
+
+function topic() {
+  echo "-----> $*"
+}
+
+# parse and derive params
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+mkdir -p $CACHE_DIR
+
+topic "Fetching noto fonts"
+cd $CACHE_DIR
+curl -L --silent https://s3.amazonaws.com/aries_static/qs3/fonts.tar.gz $url | tar x -z
+
+topic "Copying fonts to app folder"
+mkdir $BUILD_DIR/.fonts
+cp $CACHE_DIR/fonts/* $BUILD_DIR/.fonts/

@@ -1,0 +1,3 @@
+./compile_fonts $1 $2
+./compile_apt $1 $2
+./compile_phantomjs $1 $2
